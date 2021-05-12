@@ -1,0 +1,51 @@
+{% extends "visualri/baseHeaderFooter.html" %} {% load crispy_forms_tags %} {% block content %}
+<div class="background" style="background: #e9ecef">
+	<br /><br />
+	<div
+		class="container px-5"
+		style="text-align: center; background: #fff; border-radius: 20px"
+	>
+		<br /><br />
+		<div class="row">
+			<div class="col">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<h1 style="font-size: 60px">Capture Image</h1>
+						</div>
+					</div>
+					<br />
+          <br>
+					<div class="row">
+						<div class="col"></div>
+						<div class="col">
+							<form method="post" enctype="multipart/form-data">
+								{% csrf_token %} {{ form|crispy }}
+								<br />
+								<div class="form-group">
+                  <a href="{% url 'computerVision' %}" class="btn btn-dark">Go back</a>
+									<button
+										type="submit"
+										class="btn btn-primary"
+									>
+										Submit
+									</button>
+
+								</div>
+							</form>
+							<br />
+							{% if form.is_valid %}
+							<div class="alert alert-success">
+								<strong>Success!</strong>
+							</div>
+							{% endif %}
+						</div>
+						<div class="col"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br /><br />
+</div>
+{% endblock content %}

@@ -1,0 +1,411 @@
+{% extends "visualri/baseHeaderFooter.html" %} 
+{% load static %} 
+{% block content %}
+
+<div class="background" style="background: #e9ecef">
+	<div class="container">
+		<div class="row">
+			<div class="col-2 p-5" style="text-align: center">
+				<a href="{% url 'imageProcessing' %}" class="btn btn-dark">Go back</a>
+			</div>
+			<div class="col p-5" style="text-align: center">
+				<h1>Select Filter to Apply</h1>
+			</div>
+		</div>
+
+		<form action="{% url 'result' %}" method="POST">
+			{% csrf_token %}
+			<div class="row">
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="SUPERRES"
+					>
+						<h4>Super Resolution</h4>
+						<p class="text-muted" style="font-size: 15px">
+							enhance the resolution of the image
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\filter\filtered\SUPERRES.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="POLARIZE"
+					>
+						<h4>Polarize</h4>
+						<p class="text-muted" style="font-size: 15px">
+							polarize the image provided
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\filter\filtered\POLARIZE.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+				<div
+				class="col-lg-3 col-md-4 col-sm-6 py-4"
+				data-aos="fade-left"
+			>
+				<button
+					class="card"
+					style="width: 90%; text-align: center; padding: 10%"
+					name="btn"
+					value="DETAIL ENHANCE"
+				>
+					<h4>Enhancement</h4>
+					<p class="text-muted" style="font-size: 15px">
+						enhance the details of the image
+					</p>
+					<br>
+					<img
+						src="{% static 'visualri\cardImages\filter\filtered\DETAIL_ENHANCE.jpg' %}"
+						alt=""
+						style="width: 100%; object-fit: cover"
+					/>
+					<br>
+				</button>
+			</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="CONTRAST"
+					>
+						<h4>Contrast</h4>
+						<p class="text-muted" style="font-size: 15px">
+							increase the contrast of the image
+						</p><br>
+						<img
+							src="{% static 'visualri\cardImages\filter\filtered\CONTRAST.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+			</div>
+			<div class="row">
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="BLURRED"
+					>
+						<h4>Blur</h4>
+						<p class="text-muted" style="font-size: 15px">
+							static blur the image provided
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\filter\filtered\BLURRED.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+
+
+
+				
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="BGR"
+					>
+						<h4>BGR</h4>
+						<p class="text-muted" style="font-size: 15px">
+							Convert to BGR color map
+						</p><br>
+						<img
+							src="{% static 'visualri\cardImages\filter\filtered\BGR.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+				
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="GRAYSCALE"
+					>
+						<h4>Gray Scale</h4>
+						<p class="text-muted" style="font-size: 15px">
+							convert image to gray scale image
+						</p><br>
+						<img
+							src="{% static 'visualri\cardImages\filter\filtered\GRAYSCALE.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="HSV"
+					>
+						<h4>HSV</h4>
+						<p class="text-muted" style="font-size: 15px">
+							Convert to HSV color map
+						</p><br>
+						<img
+							src="{% static 'visualri\cardImages\filter\filtered\HSV.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="BRIGHTNESS"
+					>
+						<h4>Brightness</h4>
+						<p class="text-muted" style="font-size: 15px">
+							increase brightness of the image
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\filter\filtered\BRIGHTNESS.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="EDGE PRESERVING FILTER"
+					>
+						<h4>Edge Preserve</h4>
+						<p class="text-muted" style="font-size: 15px">
+							apply filter for edge preserving
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\filter\filtered\EDGE_PRESERVING_FILTER.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="MEDIAN BLUR"
+					>
+						<h4>Median Blur</h4>
+						<p class="text-muted" style="font-size: 15px">
+							apply median blur to the image
+						</p><br>
+						<img
+							src="{% static 'visualri\cardImages\filter\filtered\MEDIAN_BLUR.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+				<div
+				class="col-lg-3 col-md-4 col-sm-6 py-4"
+				data-aos="fade-left"
+			>
+				<button
+					class="card"
+					style="width: 90%; text-align: center; padding: 10%"
+					name="btn"
+					value="THRESHOLDING"
+				>
+					<h4>Thresholding</h4>
+					<p class="text-muted" style="font-size: 15px">
+						Original image without change
+					</p><br>
+					<img
+						src="{% static 'visualri\cardImages\filter\filtered\thresh.jpg' %}"
+						alt=""
+						style="width: 100%; object-fit: cover"
+					/>
+					<br>
+				</button>
+			</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="STYLIZATION"
+					>
+						<h4>Stylization</h4>
+						<p class="text-muted" style="font-size: 15px">
+							stylize the image provided
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\filter\filtered\STYLIZATION.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="COLOR SKETCH"
+					>
+						<h4>Color Sketch</h4>
+						<p class="text-muted" style="font-size: 15px">
+							apply color sketch effect
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\filter\filtered\COLOR_SKETCH.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+			
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="INPAINT"
+					>
+						<h4>Inpaint</h4>
+						<p class="text-muted" style="font-size: 15px">
+							apply filter for edge preserving
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\filter\filtered\INPAINT.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="COLORIZED"
+					>
+						<h4>Colorize</h4>
+						<p class="text-muted" style="font-size: 15px">
+							colorize the gray scale image
+						</p><br>
+						<img
+							src="{% static 'visualri\cardImages\filter\filtered\COLORIZED.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				
+
+			</div>
+		</form>
+	</div>
+	<br /><br />
+</div>
+
+{% endblock content %}

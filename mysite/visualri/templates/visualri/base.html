@@ -1,0 +1,214 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Visualri</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="icon"
+			type="image/png"
+			href="{% static 'visualri/images/icons/visualri.ico' %}"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'visualri/vendor/bootstrap/css/bootstrap.min.css' %}"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'visualri/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'visualri/vendor/animate/animate.css' %}"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'visualri/vendor/css-hamburgers/hamburgers.min.css' %}"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'visualri/vendor/select2/select2.min.css' %}"
+		/>
+		<!--===============================================================================================-->
+		<link
+			href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+			rel="stylesheet"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'visualri/css/util.css' %}"
+		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'visualri/css/main.css' %}"
+		/>
+		<!--===============================================================================================-->
+		<style>
+			a:hover {
+				background: #e9ecef !important;
+				color: #343a40 !important;
+				border-radius: 5px;
+				transition: 0.4s ease-in-out;
+			}
+		</style>
+	</head>
+	<body>
+		<nav
+			class="topnav navbar sticky-top navbar-expand-lg navbar-dark bg-dark"
+			id="myTopnav"
+		>
+			<a
+				class="navbar-brand"
+				style="font-size: 1.2em; font-family: Comfortaa"
+				href="{% url 'home' %}"
+				>Visualri</a
+			>
+
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav mr-auto color-primary">
+					<a
+						class="nav-item nav-link fa fa-facebook"
+						href="https://www.facebook.com/greatergoodcommunity"
+						target="_blank"
+					></a>
+					<a
+						class="nav-item nav-link disabled fa fa-youtube"
+						href="https://www.youtube.com/channel/UCGobVlXTTLmfkk4smTgZx1Q"
+						target="_blank"
+					></a>
+				</div>
+				{% if user.is_authenticated %}
+				<div class="navbar-nav mx-auto">
+					<a
+						class="nav-item nav-link"
+						href="{% url 'computerVision' %}"
+						>Computer Vision</a
+					>
+					<a class="nav-item nav-link" href="{% url 'imageProcessing' %}"
+						>Image Processing</a
+					>
+				</div>
+				<div class="navbar-nav ml-auto">
+					<a class="nav-item nav-link" href="{% url 'logout' %}"
+						>Logout</a
+					>
+					<a class="nav-item nav-link" href="{% url 'profile' %}"
+						>Account</a
+					>
+				</div>
+				{% else %}
+				<div class="navbar-nav ml-auto">
+					<a class="nav-item nav-link" href="{% url 'login' %}"
+						>Login</a
+					>
+					<a class="nav-item nav-link" href="{% url 'register' %}"
+						>Register</a
+					>
+				</div>
+				{% endif %}
+			</div>
+		</nav>
+
+		<div class="limiter">
+			<div
+				class="container-login100"
+				style="
+					background: linear-gradient(-135deg, #c850c0, #00c9ff);
+					background: #00c9ff;
+					background: linear-gradient(-135deg, #c850c0, #00c9ff);
+					background: linear-gradient(-135deg, #e8cbc0, #636fa4);
+					background: #636fa4;
+				"
+			>
+				<div class="wrap-login100">
+					{% url 'profile' as my_view %} 
+					{% if request.path == my_view%}
+					<div class="card">
+						<img
+							src="{{ user.profile.image.url }}"
+							style="width: 100%"
+						/>
+						<h1>{{ user.username }}</h1>
+						<p class="title">{{ user.email }}</p>
+					</div>
+					{% else %}
+					<div class="login100-pic js-tilt" data-tilt>
+						<img
+							src="{% static 'visualri/images/sharingun.webp' %}"
+							class="rounded-circle"
+							alt="IMG"
+						/>
+					</div>
+					{% endif %} {% block content %}{% endblock %} 
+					{% if messages%} 
+					{% for message in messages %}
+					<div class="alert alert-{{message.tags}}">
+						<li class="error">{{ message }}</li>
+					</div>
+					{% endfor %} {% endif %}
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid bg-dark text-light">
+			<div class="row py-3">
+				<div class="col-5">&copy; Copyrights 2020</div>
+				<div class="col-5">Visualri</div>
+				<div class="col-2">
+					<a href="#" target="_blank">Contact Us</a>
+				</div>
+			</div>
+		</div>
+
+		<!--===============================================================================================-->
+		<script src="{% static 'visualri/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+		<!--===============================================================================================-->
+		<script src="{% static 'visualri/vendor/bootstrap/js/popper.js' %}"></script>
+		<script src="{% static 'visualri/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+		<!--===============================================================================================-->
+		<script src="{% static 'visualri/vendor/select2/select2.min.js' %}"></script>
+		<!--===============================================================================================-->
+		<script src="{% static 'visualri/vendor/tilt/tilt.jquery.min.js' %}"></script>
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		<script>
+			$('.js-tilt').tilt({
+				scale: 0.9,
+			});
+
+			AOS.init();
+		</script>
+		<!--===============================================================================================-->
+		<script src="{% static 'visualri/js/main.js' %}"></script>
+	</body>
+</html>

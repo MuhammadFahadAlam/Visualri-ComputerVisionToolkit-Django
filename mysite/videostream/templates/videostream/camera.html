@@ -1,0 +1,46 @@
+<!--<img src="http://127.0.0.1:8000/videostream/video_feed">-->
+{% extends "visualri/baseHeaderFooter.html" %} {% load crispy_forms_tags %} 
+{% block content %}
+
+<div class="background" style="background: #e9ecef">
+	<br /><br />
+	<div
+		class="container px-5"
+		style="text-align: center; background: #fff; border-radius: 20px"
+	>
+
+  <div class="row">
+  <div class="col p-5">
+  <br><br><br><br><br><br>
+    <h1 style="font-size: 40px">LIVE {{action}} DETECTION</h1>
+    <br>
+    <br><br>
+    
+    
+    <form action="save_image" method="POST">
+		  {% csrf_token %} 
+      <div class="row">
+          <div class="col">
+            <button   type="submit" class="btn btn-primary">Capture</button>
+            <a href="{{request.META.HTTP_REFERER}}" class="btn btn-dark">Go back</a>
+    
+          </div>
+   
+    </div>
+    </form>
+    
+    
+  </div>
+  <div class="col">
+  <br><br>
+        <img src="http://127.0.0.1:8000/videostream/video_feed" class="img-thumbnail mx-auto d-block" style="width:auto;height:400px;">
+  <br><br>
+
+  </div>
+  </div>
+  
+
+  </div>
+  	<br /><br />
+</div>
+{% endblock content %}

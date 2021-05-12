@@ -1,0 +1,58 @@
+{% extends "visualri/baseHeaderFooter.html" %} 
+{% load static %} 
+{% block content %}
+
+<div class="background py-4" style="background: #e9ecef">
+	<div class="container px-5" style="background: #fff; border-radius: 20px">
+		<div class="row">
+
+			<div class="col-5 p-5" style="text-align: center">
+				<a href="{{request.META.HTTP_REFERER}}" class="btn btn-dark">Go back</a>
+			</div>
+			
+			<div class="col-7 p-5">
+				<h1>Result</h1>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-md-6" style="text-align: center">
+				<h1>Original Image</h1>
+				<p class="text-muted p-4">The image uploaded by the user.</p>
+				<img
+					class="p-5"
+					style="width: 100%"
+					src="{{ model_instance.image.url }}"
+					alt=""
+				/>
+			</div>
+			<div
+				class="col-md-6"
+				style="text-align: center; border-left: 1px solid #343a40"
+			>
+				<h1>Result After Applying</h1>
+				<p class="text-muted p-4">
+					Result after applying filters on the image.
+				</p>
+				<img
+					class="p-5"
+					style="width: 100%"
+					src="{{ image_uri }}"
+					alt=""
+				/>
+			</div>
+		</div>
+	
+		<form method="POST", action="{% url 'download' %}" >
+			{% csrf_token %}
+			
+			<div class="col-12 p-5" style="text-align: center">
+				<button   class="btn btn-danger">Download</a>
+			</div>
+		</form>
+	</div>
+	<br />
+	<br />
+</div>
+
+{% endblock content %}

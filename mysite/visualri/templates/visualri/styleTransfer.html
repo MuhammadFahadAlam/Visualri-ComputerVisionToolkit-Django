@@ -1,0 +1,407 @@
+{% extends "visualri/baseHeaderFooter.html" %} 
+{% load static %} 
+{% block content %}
+
+<div class="background" style="background: #e9ecef">
+	<div class="container">
+		<div class="row">
+			<div class="col-2 p-5" style="text-align: center">
+				<a href="{% url 'imageProcessing' %}" class="btn btn-dark">Go back</a>
+			</div>
+			<div class="col p-5" style="text-align: center">
+				<h1>Select Filter to Apply</h1>
+			</div>
+		</div>
+
+		<form action="{% url 'resultStyle' %}" method="POST">
+			{% csrf_token %}
+			<div class="row">
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="rain"
+					>
+						<h4>Rain</h4>
+						<p class="text-muted" style="font-size: 15px">
+							Transfer Style on the image
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\style\styled\rain.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+				
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="pink"
+					>
+						<h4>Pink</h4>
+						<p class="text-muted" style="font-size: 15px">
+							Transfer Style on the image
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\style\styled\pink.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="triangle"
+					>
+						<h4>Triangle</h4>
+						<p class="text-muted" style="font-size: 15px">
+							Convert to HSV color map
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\style\styled\triangle.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="gold_black"
+					>
+						<h4>Gold Black</h4>
+						<p class="text-muted" style="font-size: 15px">
+							convert image to gray scale image
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\style\styled\gold_black.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="flame"
+					>
+						<h4>Flame</h4>
+						<p class="text-muted" style="font-size: 15px">
+							colorize the gray scale image
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\style\styled\flame.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="Fire_Style"
+					>
+						<h4>Fire Style</h4>
+						<p class="text-muted" style="font-size: 15px">
+							static blur the image provided
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\style\styled\Fire_Style.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="landscape"
+					>
+						<h4>Landscape</h4>
+						<p class="text-muted" style="font-size: 15px">
+							apply median blur to the image
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\style\styled\landscape.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="feathers"
+					>
+						<h4>Feathers</h4>
+						<p class="text-muted" style="font-size: 15px">
+							enhance the resolution of the image
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\style\styled\feathers.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="candy"
+					>
+						<h4>Candy</h4>
+						<p class="text-muted" style="font-size: 15px">
+							polarize the image provided
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\style\styled\candy.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="composition_vii"
+					>
+						<h4>Composition</h4>
+						<p class="text-muted" style="font-size: 15px">
+							increase brightness of the image
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\style\styled\composition_vii.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="udnie"
+					>
+						<h4>Udnie</h4>
+						<p class="text-muted" style="font-size: 15px">
+							increase the contrast of the image
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\style\styled\udnie.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="the_wave"
+					>
+						<h4>The Wave</h4>
+						<p class="text-muted" style="font-size: 15px">
+							stylize the image provided
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\style\styled\the_wave.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="the_scream"
+					>
+						<h4>The Scream</h4>
+						<p class="text-muted" style="font-size: 15px">
+							enhance the details of the image
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\style\styled\the_scream.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="mosaic"
+					>
+						<h4>Mosaic</h4>
+						<p class="text-muted" style="font-size: 15px">
+							apply color sketch effect
+						</p>
+						<br>
+						<img
+							src="{% static 'visualri\cardImages\style\styled\mosaic.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="la_muse"
+					>
+						<h4>La Muse</h4>
+						<p class="text-muted" style="font-size: 15px">
+							apply filter for edge preserving
+						</p><br>
+						<img
+							src="{% static 'visualri\cardImages\style\styled\la_muse.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+				<div
+					class="col-lg-3 col-md-4 col-sm-6 py-4"
+					data-aos="fade-left"
+				>
+					<button
+						class="card"
+						style="width: 90%; text-align: center; padding: 10%"
+						name="btn"
+						value="starry_night"
+					>
+						<h4>Starry Night</h4>
+						<p class="text-muted" style="font-size: 15px">
+							apply filter for edge preserving
+						</p><br>
+						<img
+							src="{% static 'visualri\cardImages\style\styled\starry_night.jpg' %}"
+							alt=""
+							style="width: 100%; object-fit: cover"
+						/>
+						<br>
+					</button>
+				</div>
+
+			</div>
+		</form>
+	</div>
+	<br /><br />
+</div>
+
+{% endblock content %}

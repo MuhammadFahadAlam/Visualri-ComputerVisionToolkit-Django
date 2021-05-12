@@ -1,0 +1,43 @@
+{% extends "visualri/baseHeaderFooter.html" %} {% load crispy_forms_tags %} 
+{% block content %}
+
+<div class="background" style="background: #e9ecef">
+	<br /><br />
+	<div
+		class="container px-5"
+		style="text-align: center; background: #fff; border-radius: 20px"
+	>
+		<div class="row">
+			<div class="col p-5">
+				<br /><br /><br />
+				<h1 style="font-size: 40px">LIVE {{request.session.action}} DETECTION</h1>
+				<br />
+				<p class="text-muted" style="font-size: 30px">With IP Camera</p>
+				<br /><br />
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %} {{ form|crispy }}
+					<br />
+					<div class="form-group">
+				<button class="btn btn-dark">Go back</button>
+						<button type="submit" class="btn btn-primary">
+							Submit
+						</button>
+			
+					</div>
+				</form>
+			</div>
+			<div class="col">
+
+				{% if form.is_valid %}
+				<img
+					src="http://127.0.0.1:8000/videostream/webcam_feed"
+					class="img-thumbnail mx-auto d-block"
+					style="wdith: auto; height: 400px"
+				/>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+    <br><br>
+	{% endblock content %}
+</div>

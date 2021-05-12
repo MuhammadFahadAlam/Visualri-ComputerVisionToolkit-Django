@@ -1,0 +1,48 @@
+{% extends "visualri/baseHeaderFooter.html" %} 
+{% load static %} 
+{% block content %}
+
+<div class="background py-4 " style="background: #e9ecef">
+	<div class="container px-5" style="background: #fff; border-radius: 20px">
+		<div class="row">
+			<div class="col-2 p-5" style="text-align: center">
+				<a href="{{request.META.HTTP_REFERER}}" class="btn btn-dark">Go back</a>
+			</div>
+			<div class="col p-5" style="text-align: center">
+				<h1>Provide Image</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6" style="text-align: center">
+				<h1>Upload Image</h1>
+				<p class="text-muted p-4">
+					Upload the image on which you want to perform image
+					processing on.
+				</p>
+				<form method="post" class="py-5" enctype="multipart/form-data">
+					{% csrf_token %} {{ form.as_p }}
+					<div class="form-group">
+						<br />
+						<button type="submit" class="btn btn-primary">
+							Submit
+						</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-6" style="text-align: center;border-left: 1px solid #343a40">
+				<h1>Take Picture</h1>
+				<p class="text-muted p-4">Take picture from camera to perform image processing.</p>
+				<br><br>
+				<a  href="{% url 'videostream:capture' %}" class="btn btn-primary">
+					Take Picture 
+				</a>
+				
+			</div>
+		</div>
+		<br>
+	</div>
+	<br />
+	<br />
+</div>
+
+{% endblock content %}

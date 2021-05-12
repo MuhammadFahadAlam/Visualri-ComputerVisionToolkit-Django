@@ -1,0 +1,162 @@
+{% extends "visualri/baseHeaderFooter.html" %} 
+{% load static %} 
+{% block content%}
+
+<!-- Modal 
+
+<div
+	class="modal fade"
+	id="exampleModal"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Result</h5>
+				<button
+					type="button"
+					class="close"
+					data-dismiss="modal"
+					aria-label="Close"
+				>
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<img
+					src="{% static 'visualri/images/robot.png'%}"
+					alt=""
+					style="object-fit: cover; width: 100%"
+				/>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-dark">Download</button>
+				<button
+					type="button"
+					class="btn btn-danger"
+					data-dismiss="modal"
+				>
+					Close
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+					data-toggle="modal"
+					data-target="#exampleModal"
+
+-->
+
+<div class="background" style="background: #e9ecef">
+	<div class="container">
+		<div class="row">
+			<div class="col p-5" style="text-align: center">
+				<h1>Select Function</h1>
+			</div>
+		</div>
+		<div class="row" style="align-item: center">
+			<div class="col-lg-4 py-3" data-aos="fade-left">
+				<div
+					class="card p-5"
+					style="width: 80%; text-align: center; padding: 20%"
+				>
+					<h4> Live Gender Detection</h4>
+					<p class="text-muted" style="font-size: 15px">
+						Face Detection by using IP Camera or Webcam
+					</p>
+					<br>
+					<img
+						src="{% static 'visualri\cardImages\main\main\gender.jpg' %}"
+						alt=""
+						style="width: 100%; object-fit: cover"
+					/>
+					<br>
+					<a
+						href="{% url 'videostream:gender' %}"
+						class="card-link bg-dark"
+						style="
+							color: #fff;
+							font-weight: bold;
+							border-radius: 5px;
+							border: 2px solid #343a40;
+							padding: 7px;
+						"
+					>
+						Try Now
+					</a>
+				</div>
+			</div>
+			<div class="col-lg-4 py-3" data-aos="fade-left">
+				<div
+					class="card p-5"
+					style="width: 80%; text-align: center; padding: 20%"
+				>
+					<h4> Live Face Detection</h4>
+					<p class="text-muted" style="font-size: 15px">
+						Face Detection by using IP Camera or Webcam
+					</p>
+					<br>
+					<img
+						src="{% static 'visualri\cardImages\main\main\face.jpg' %}"
+						alt=""
+						style="width: 100%; object-fit: cover"
+					/>
+					<br>
+					<a
+						href="{% url 'videostream:face' %}"
+						class="card-link bg-dark"
+						style="
+							color: #fff;
+							font-weight: bold;
+							border-radius: 5px;
+							border: 2px solid #343a40;
+							padding: 7px;
+						"
+					>
+						Try Now
+					</a>
+				</div>
+			</div>
+			<div class="col-lg-4 py-3" data-aos="fade-left">
+			
+			<div
+					class="card p-5"
+					style="width: 80%; text-align: center; padding: 20%"
+				>
+					<h4> Live Emotion Detection</h4>
+					<p class="text-muted" style="font-size: 15px">
+						Face Detection by using IP Camera or Webcam
+					</p>
+					<br>
+					<img
+						src="{% static 'visualri\cardImages\main\main\emotion.jpg' %}"
+						alt=""
+						style="width: 100%; object-fit: cover"
+					/>
+					<br>
+					<a
+						href="{% url 'videostream:emotion' %}"
+						class="card-link bg-dark"
+						style="
+							color: #fff;
+							font-weight: bold;
+							border-radius: 5px;
+							border: 2px solid #343a40;
+							padding: 7px;
+						"
+					>
+						Try Now
+					</a>
+				</div>
+
+			</div>
+		</div>
+<br><br>
+	</div>
+	{% endblock content %}
+</div>

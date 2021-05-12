@@ -1,0 +1,726 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Visualri</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="icon"
+			type="image/png"
+			href="{% static 'visualri/images/icons/visualri.ico' %}"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'visualri/vendor/bootstrap/css/bootstrap.min.css' %}"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'visualri/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'visualri/vendor/animate/animate.css' %}"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'visualri/vendor/css-hamburgers/hamburgers.min.css' %}"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'visualri/vendor/select2/select2.min.css' %}"
+		/>
+		<!--===============================================================================================-->
+		<link
+			href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+			rel="stylesheet"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'visualri/css/util.css' %}"
+		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'visualri/css/main.css' %}"
+		/>
+		<!--===============================================================================================-->
+
+		<style>
+			a:hover {
+				background: #e9ecef !important;
+				color: #343a40 !important;
+				border-radius: 5px;
+				transition: 0.4s ease-in-out;
+			}
+
+			.custom-shape-divider-bottom-1610814154 {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				overflow: hidden;
+				line-height: 0;
+				transform: rotate(180deg);
+			}
+
+			.custom-shape-divider-bottom-1610814154 svg {
+				position: relative;
+				display: block;
+				width: calc(100% + 1.3px);
+				height: 21px;
+			}
+
+			.custom-shape-divider-bottom-1610814154 .shape-fill {
+				fill: #343a40;
+			}
+			.custom-shape-divider-top-1610806207 {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				overflow: hidden;
+				line-height: 0;
+			}
+
+			.custom-shape-divider-top-1610806207 svg {
+				position: relative;
+				display: block;
+				width: calc(196% + 1.3px);
+				height: 130px;
+			}
+
+			.custom-shape-divider-top-1610806207 .shape-fill {
+				fill: #ffffff;
+			}
+
+			.custom-shape-divider-bottom-1610803100 {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				overflow: hidden;
+				line-height: 0;
+				transform: rotate(180deg);
+			}
+
+			.custom-shape-divider-bottom-1610803100 svg {
+				position: relative;
+				display: block;
+				width: calc(215% + 1.3px);
+				height: 90px;
+			}
+
+			.custom-shape-divider-bottom-1610803100 .shape-fill {
+				fill: #ffffff;
+			}
+
+
+			canvas{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+
+
+
+		</style>
+	</head>
+
+	<body>
+		<nav
+			class="topnav navbar sticky-top navbar-expand-lg navbar-dark bg-dark"
+			id="myTopnav"
+		>
+			<a
+				class="navbar-brand"
+				style="font-size: 1.2em; font-family: Comfortaa"
+				href="{% url 'home' %}"
+			>
+				Visualri</a
+			>
+
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav mr-auto color-primary">
+					<a
+						class="nav-item nav-link fa fa-facebook"
+						href="https://www.facebook.com/greatergoodcommunity"
+						target="_blank"
+					></a>
+					<a
+						class="nav-item nav-link disabled fa fa-youtube"
+						href="https://www.youtube.com/channel/UCGobVlXTTLmfkk4smTgZx1Q"
+						target="_blank"
+					></a>
+				</div>
+				{% if user.is_authenticated %}
+				<div class="navbar-nav mx-auto">
+					<a
+						class="nav-item nav-link"
+						href="{% url 'computerVision' %}"
+						>Computer Vision
+					</a>
+					<a class="nav-item nav-link" href="{% url 'imageProcessing' %}"
+						>Image Processing</a
+					>
+				</div>
+				<div class="navbar-nav ml-auto">
+					<a class="nav-item nav-link" href="{% url 'logout' %}"
+						>Logout</a
+					>
+					<a class="nav-item nav-link" href="{% url 'profile' %}"
+						>Account</a
+					>
+				</div>
+				{% else %}
+				<div class="navbar-nav ml-auto">
+					<a class="nav-item nav-link" href="{% url 'login' %}"
+						>Login</a
+					>
+					<a class="nav-item nav-link" href="{% url 'register' %}"
+						>Register</a
+					>
+				</div>
+				{% endif %}
+			</div>
+		</nav>
+
+		<div
+			class="jumbotron"
+			style="
+				position: relative;
+				background: #9053c7;
+				background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+				background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+				background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+				background: linear-gradient(-135deg, #c850c0, #4158d0);
+				background: #e9ecef;
+								background: linear-gradient(-135deg, #00c9ff, #fd4445);
+
+			"
+		>
+			<div class="container">
+				<div class="row">
+					<div
+						class="col-md-4"
+						data-aos="fade-left"
+						style="text-align: center"
+						data-aos-offset="300"
+						data-aos-easing="ease-in-sine"
+					>
+<br><br><br>			<br>			<img
+							src="{%static 'visualri/images/sharingun.webp' %}"
+							class="rounded-circle"
+							style="width: 50%"
+						/>
+					</div>
+					<div
+						class="col-md-4"
+						data-aos="fade-right"
+						style="text-align: center"
+						data-aos-offset="300"
+						data-aos-easing="ease-in-sine"
+					>
+						<h1 style="font-size: 60px">Visualri</h1>
+						<!--<p class="text-muted" style="font-size: 20px">
+							Change the way image is seen !
+						</p>
+						-->
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<a href="{% url 'register' %}">
+							<button type="button" class="btn btn-dark btn-lg">
+								Sign Up
+							</button></a
+						>
+					</div>
+					<div
+						class="col-md-4"
+						data-aos="fade-right"
+						style="text-align: center"
+						data-aos-offset="300"
+						data-aos-easing="ease-in-sine"
+					>
+					<br><br><br>
+						<img
+							src="{%static 'visualri/images/jumbotron.png' %}"
+							style="width: 100%"
+						/>
+					</div>
+				</div>
+				<br><br>
+				<div class="custom-shape-divider-bottom-1610803100">
+					<svg
+						data-name="Layer 1"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 1200 120"
+						preserveAspectRatio="none"
+					>
+						<path
+							d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+							class="shape-fill"
+						></path>
+					</svg>
+				</div>
+			</div>
+		</div>
+
+		<br />
+		<br />
+		<br />
+		<br />
+
+		<div
+			class="container"
+			style="display: flex; justify-content: center; align-item: center"
+		>
+			<div
+				style="width: 450px"
+				data-aos="fade-zoom-in"
+				data-aos-delay="100"
+			>
+				<h1 style="font-size: 40px; padding: 20px 0">About Us</h1>
+				<p class="text-muted" style="font-size: 18px">
+					We are a team of developers having skills in computer
+					vision. We have used opencv library of python to perform
+					image Processing on the images to get interesting results.
+				</p>
+			</div>
+		</div>
+
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+
+		<div
+			class="container"
+			style="
+				background: #e9ecef;
+				position: relative;
+				padding-top: 120px;
+				padding-bottom: 50px;
+			"
+		>
+			<div class="row">
+				<div class="col">
+					<div class="container">
+						<div
+							class="row p-5"
+							style="
+								display: flex;
+								justify-content: center;
+								align-item: center;
+							"
+							data-aos="fade-up"
+							data-aos-anchor-placement="bottom-bottom"
+						>
+							<h1>Services</h1>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+								<div
+									class="card"
+									style="width: 18rem"
+									data-aos="fade-up-right"
+								>
+									<div class="card-body">
+										<img
+											class="card-img-top"
+											src="{% static 'visualri/images/imageProcessing.png' %}"
+											alt="Card image cap"
+										/>
+										<h5 class="card-title">
+											Image Processing
+										</h5>
+										<h6
+											class="card-subtitle mb-2 text-muted"
+										>
+											Using OpenCv
+										</h6>
+										<p class="card-text">
+											User can perform blurring,
+											filtering, background removal and
+											many other image processing
+											technique.
+										</p>
+										<br />
+										<a
+											href="{% url 'imageProcessing' %}"
+											class="card-link"
+											style="
+												background: #e9ecef;
+												color: #343a40;
+												font-weight: bold;
+												border-radius: 5px;
+												border: 2px solid #343a40;
+												padding: 7px;
+											"
+										>
+											Try Now
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div
+									class="card"
+									style="width: 18rem"
+									data-aos="flip-up"
+								>
+									<div class="card-body">
+										<img
+											class="card-img-top"
+											src="{% static 'visualri/images/ComputerVision.png' %}"
+											alt="Card image cap"
+										/>
+										<h5 class="card-title">
+											Computer Vision
+										</h5>
+										<h6
+											class="card-subtitle mb-2 text-muted"
+										>
+											Using OpenCv
+										</h6>
+										<p class="card-text">
+											User can perform many computer
+											vision operations. It is done with
+											opencv.
+										</p>
+										<br />
+										<a
+											href="{% url 'computerVision' %}"
+											class="card-link"
+											style="
+												background: #e9ecef;
+												color: #343a40;
+												font-weight: bold;
+												border-radius: 5px;
+												border: 2px solid #343a40;
+												padding: 7px;
+											"
+										>
+											Try Now
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div
+									class="card"
+									style="width: 18rem"
+									data-aos="fade-up-left"
+								>
+									<div class="card-body">
+										<img
+											class="card-img-top"
+											src="{% static 'visualri/images/GenderDetection.png' %}"
+											alt="Card image cap"
+										/>
+										<h5 class="card-title">
+											Gender Recognition
+										</h5>
+										<h6
+											class="card-subtitle mb-2 text-muted"
+										>
+											Using ML Model
+										</h6>
+										<p class="card-text">
+											Perform gender operation by using a
+											pre modeled machine learning model.
+										</p>
+										<br />
+										<a
+											href="#"
+											class="card-link"
+											style="
+												background: #e9ecef;
+												color: #343a40;
+												font-weight: bold;
+												border-radius: 5px;
+												border: 2px solid #343a40;
+												padding: 7px;
+											"
+											>Try Now</a
+										>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="custom-shape-divider-top-1610806207">
+					<svg
+						data-name="Layer 1"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 1200 120"
+						preserveAspectRatio="none"
+					>
+						<path
+							d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+							class="shape-fill"
+						></path>
+					</svg>
+				</div>
+			</div>
+		</div>
+
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+
+		<div class="container">
+			<div
+				class="row p-4 m-2"
+				style="
+					display: flex;
+					justify-content: center;
+					align-item: center;
+				"
+				data-aos="flip-down"
+			>
+				<h1>How it works ?</h1>
+			</div>
+			<br />
+			<br />
+			<br />
+			<br />
+			<div
+				class="row p-5 m-2"
+				style="
+					background: #e9ecef;
+					border-radius: 10px;
+					position: relative;
+				"
+			>
+				<div class="col-md-6" data-aos="zoom-in-up">
+					<br />
+					<br />
+					<h1 style="font-size: 40px">Upload</h1>
+					<br />
+					<p class="text-muted" style="font-size: 20px">
+						Upload the image to perform image processing on it.
+						Uploaded image can be of an type.
+					</p>
+				</div>
+				<div
+					class="col-md-6"
+					style="text-align: center"
+					data-aos="zoom-in-left"
+				>
+					<img
+						style="filter: drop-shadow(5px 4px 3px #e9ecef)"
+						src="{%static 'visualri/images/upload.png' %}"
+						width="300px"
+					/>
+				</div>
+				<div class="custom-shape-divider-bottom-1610814154">
+					<svg
+						data-name="Layer 1"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 1200 120"
+						preserveAspectRatio="none"
+					>
+						<path
+							d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z"
+							class="shape-fill"
+						></path>
+					</svg>
+				</div>
+			</div>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<div class="row p-4 m-2">
+				<div
+					class="col-md-6"
+					style="text-align: center"
+					data-aos="zoom-in-right"
+				>
+					<img
+						style="filter: drop-shadow(-5px 4px 3px #e9ecef)"
+						src="{%static 'visualri/images/camera.png' %}"
+						width="300px"
+					/>
+				</div>
+				<div class="col-md-6" data-aos="zoom-in-bottom">
+					<br />
+					<br />
+					<h1 style="font-size: 40px">Take Image from Camera</h1>
+					<br />
+					<p class="text-muted" style="font-size: 20px">
+						User can also use webcam or camera to take picture and
+						perform image processing on it.
+					</p>
+				</div>
+			</div>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<div
+				class="row p-4 m-2"
+				style="
+					background: #e9ecef;
+					position: relative;
+					border-radius: 10px;
+				"
+			>
+				<div class="col-md-6" data-aos="zoom-in-up">
+					<br />
+					<br />
+					<h1 style="font-size: 40px">Function</h1>
+					<br />
+					<p class="text-muted" style="font-size: 20px">
+						Perform operation on the image. This operation can be
+						Image Processing, Computer Vision and Gender detection.
+						The operation is performed on the image and output is
+						displayed.
+					</p>
+				</div>
+				<div
+					class="col-md-6"
+					style="text-align: center"
+					data-aos="zoom-in-left"
+				>
+					<img
+						style="filter: drop-shadow(5px 4px 3px #e9ecef)"
+						src="{%static 'visualri/images/facial-recognition.png' %}"
+						width="300px"
+					/>
+				</div>
+				<div class="custom-shape-divider-bottom-1610814154">
+					<svg
+						data-name="Layer 1"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 1200 120"
+						preserveAspectRatio="none"
+					>
+						<path
+							d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z"
+							class="shape-fill"
+						></path>
+					</svg>
+				</div>
+			</div>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<div class="row p-4 m-2">
+				<div
+					class="col-md-6"
+					style="text-align: center"
+					data-aos="zoom-in-right"
+				>
+					<img
+						style="filter: drop-shadow(-5px 4px 3px #e9ecef)"
+						src="{%static 'visualri/images/download.png' %}"
+						width="300px"
+					/>
+				</div>
+				<div class="col-md-6" data-aos="zoom-in-bottom">
+					<br />
+					<br />
+					<h1 style="font-size: 40px">Download</h1>
+					<br />
+					<p class="text-muted" style="font-size: 20px">
+						Download the new image with operation performed.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+
+		<div class="container-fluid bg-dark text-light">
+			<div class="row py-3">
+				<div class="col-5">&copy; Copyrights 2020</div>
+				<div class="col-5">Visualri</div>
+				<div class="col-2">
+					<a href="#" target="_blank">Contact Us</a>
+				</div>
+			</div>
+		</div>
+
+		<!--===============================================================================================-->
+		<script src="{% static 'visualri/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+		<!--===============================================================================================-->
+		<script src="{% static 'visualri/vendor/bootstrap/js/popper.js' %}"></script>
+		<script src="{% static 'visualri/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+		<!--===============================================================================================-->
+		<script src="{% static 'visualri/vendor/select2/select2.min.js' %}"></script>
+		
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r58/three.min.js"></script>
+		<script src="{% static 'visualri/vendor/sketch.js-master/js/sketch.min.js' %}"></script>
+
+		<script>
+
+
+        </script>
+		<!--===============================================================================================-->
+		<script src="{% static 'visualri/vendor/tilt/tilt.jquery.min.js' %}"></script>
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		<script>
+			$('.js-tilt').tilt({
+				scale: 0.9,
+			});
+
+			AOS.init();
+		</script>
+		<!--===============================================================================================-->
+		<script src="{% static 'visualri/js/main.js' %}"></script>
+	</body>
+</html>
